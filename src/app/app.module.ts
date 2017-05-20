@@ -21,6 +21,7 @@ import { ChallengesWonComponent } from './challenges-won/challenges-won.componen
 import { ChallengesLostComponent } from './challenges-lost/challenges-lost.component';
 import { ChallengesDeclinedComponent } from './challenges-declined/challenges-declined.component';
 import { ChallengesPendingComponent } from './challenges-pending/challenges-pending.component';
+import { LadderRankingComponent } from './ladder-ranking/ladder-ranking.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDXjmsywuNUTfxvX7YnHwKsTn12_Xd1d9k',
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     ChallengesWonComponent,
     ChallengesLostComponent,
     ChallengesDeclinedComponent,
-    ChallengesPendingComponent
+    ChallengesPendingComponent,
+    LadderRankingComponent
   ],
   imports: [
     BrowserModule,

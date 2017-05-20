@@ -9,22 +9,6 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <h2>Ladder Rankings</h2>
-    <!--<p class="lead">This is a ladder style ranking.</p>-->
-  <ul class="list-unstyled">
-    <li *ngFor="let player of players">
-      <div class="alert alert-success">
-        <div class="row">
-          <div class="col-xs-10">
-            <p [ngClass]="{'bold-text': (player.uid === user.uid)}" style="font-size: 26px; margin: 0;">#{{player.rank}} {{player.displayName}}</p>
-          </div>
-          <div class="col-xs-2">
-            <a class="btn btn-default pull-right" *ngIf="player.canChallenge;" (click)="challenge(player)" role="button">Challenge</a>
-            <span *ngIf="player.isChallenged" style="font-size: 24px;" class="pull-right">Challenged!</span>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+    <app-ladder-ranking></app-ladder-ranking>
   </div>
 </div>
