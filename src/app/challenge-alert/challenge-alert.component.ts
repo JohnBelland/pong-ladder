@@ -50,13 +50,15 @@ export class ChallengeAlertComponent implements OnInit, OnDestroy {
   }
 
   challengeDeclined(challenge: any, key: string) {
-    //remove and save to challengesDeclined
+    // remove and save to challengesDeclined
+    challenge.challengeResponseDateTime = Date.now();
     this.challengesDeclined$.push(challenge);
     this.challenges$.remove(key);
   }
 
   challengeWon(challenge: any, key: string) {
-    //remove and save to challengesLost
+    // remove and save to challengesLost
+    challenge.challengeResponseDateTime = Date.now();
     this.challengesLost$.push(challenge);
     this.challenges$.remove(key);
   }
@@ -76,7 +78,8 @@ export class ChallengeAlertComponent implements OnInit, OnDestroy {
       playersUpdated = true;
     });
 
-    //remove and save to challengesWon
+    // remove and save to challengesWon
+    challenge.challengeResponseDateTime = Date.now();
     this.challengesWon$.push(challenge);
     this.challenges$.remove(key);
   }

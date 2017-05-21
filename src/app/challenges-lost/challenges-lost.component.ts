@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {AuthService} from '../providers/auth.service';
+import {PlayerService} from '../providers/player.service';
+import {ChallengesService} from '../providers/challenges.service';
 
 @Component({
   selector: 'app-challenges-lost',
@@ -6,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./challenges-lost.component.css']
 })
 export class ChallengesLostComponent implements OnInit {
+  loggedInPlayer: any;
+  challengesLost: any[];
 
-  constructor() { }
+  constructor(private playerService: PlayerService,
+              private challegesService: ChallengesService) {
+  }
 
   ngOnInit() {
+    this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
+    this.challegesService.getChallengesLost().subscribe(challengesLost => this.challengesLost = challengesLost);
   }
 
 }

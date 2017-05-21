@@ -22,6 +22,8 @@ import { ChallengesLostComponent } from './challenges-lost/challenges-lost.compo
 import { ChallengesDeclinedComponent } from './challenges-declined/challenges-declined.component';
 import { ChallengesPendingComponent } from './challenges-pending/challenges-pending.component';
 import { LadderRankingComponent } from './ladder-ranking/ladder-ranking.component';
+import {PlayerService} from "./providers/player.service";
+import {ChallengesService} from "./providers/challenges.service";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDXjmsywuNUTfxvX7YnHwKsTn12_Xd1d9k',
@@ -62,7 +64,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AlertModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, PlayerService, ChallengesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

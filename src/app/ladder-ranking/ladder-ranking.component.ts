@@ -63,6 +63,7 @@ export class LadderRankingComponent implements OnInit {
     if (!this.isChallenged(player)) {
       this.challenges$.push({
         challengeRequestDateTime: Date.now(),
+        challengeResponseDateTime: Date.now(),
         challengerPlayerId: this.currentPlayer.$key,
         challengerDisplayName: this.currentPlayer.displayName,
         challengerRank: this.currentPlayer.rank,

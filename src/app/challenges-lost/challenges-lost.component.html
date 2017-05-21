@@ -1,3 +1,12 @@
-<p>
-  challenges-lost works!
-</p>
+
+<h2>Challenges Lost</h2>
+
+<ul class="list-unstyled">
+  <li *ngFor="let challenge of challengesLost">
+    <div class="alert alert-success">
+      <p>
+        #{{challenge.challengerRank}} {{challenge.challengerDisplayName}} challenged #{{challenge.defenderRank}} {{challenge.defenderDisplayName}} and lost
+      </p>
+    </div>
+  </li>
+</ul>
