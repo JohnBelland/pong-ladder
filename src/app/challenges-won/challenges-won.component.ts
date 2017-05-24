@@ -19,6 +19,16 @@ export class ChallengesWonComponent implements OnInit {
 
   ngOnInit() {
     this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
-    this.challegesService.getChallengesWon().subscribe(challengesWon => this.challengesWon = challengesWon);
+    this.challegesService.getChallengesWon()
+      .map(c => c.sort(this.sortChallenges))
+      .subscribe(challengesWon => this.challengesWon = challengesWon);
+  }
+
+  sortChallenges = (a, b) => {
+    if (a.challengeResponseDateTime > b.challengeResponseDateTime) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 }

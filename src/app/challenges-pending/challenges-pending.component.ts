@@ -17,7 +17,17 @@ export class ChallengesPendingComponent implements OnInit {
 
   ngOnInit() {
     this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
-    this.challegesService.getChallengesPending().subscribe(challengesPending => this.challengesPending = challengesPending);
+    this.challegesService.getChallengesPending()
+      .map(c => c.sort(this.sortChallenges))
+      .subscribe(challengesPending => this.challengesPending = challengesPending);
+  }
+
+  sortChallenges = (a, b) => {
+    if (a.challengeResponseDateTime > b.challengeResponseDateTime) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 
 }

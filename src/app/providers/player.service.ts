@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth/auth';
 import {Subject} from 'rxjs';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from './auth.service';

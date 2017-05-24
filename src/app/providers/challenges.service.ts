@@ -13,7 +13,7 @@ export class ChallengesService {
   constructor(private af: AngularFireDatabase) {
     af.list('/challengeswon', {
       query: {
-        limitToLast: 10,
+        limitToLast: 5,
         orderByChild: 'challengeResponseDateTime'
       }
     }).subscribe(challenges => {
@@ -21,7 +21,7 @@ export class ChallengesService {
     });
     af.list('/challengeslost', {
       query: {
-        limitToLast: 10,
+        limitToLast: 5,
         orderByChild: 'challengeResponseDateTime'
       }
     }).subscribe(challenges => {
@@ -29,7 +29,7 @@ export class ChallengesService {
     });
     af.list('/challengesdeclined', {
       query: {
-        limitToLast: 10,
+        limitToLast: 5,
         orderByChild: 'challengeResponseDateTime'
       }
     }).subscribe(challenges => {
@@ -37,7 +37,7 @@ export class ChallengesService {
     });
     af.list('/challenges', {
       query: {
-        limitToLast: 10,
+        limitToLast: 5,
         orderByChild: 'challengeResponseDateTime'
       }
     }).subscribe(challenges => {

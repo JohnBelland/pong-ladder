@@ -19,7 +19,17 @@ export class ChallengesLostComponent implements OnInit {
 
   ngOnInit() {
     this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
-    this.challegesService.getChallengesLost().subscribe(challengesLost => this.challengesLost = challengesLost);
+    this.challegesService.getChallengesLost()
+      .map(c => c.sort(this.sortChallenges))
+      .subscribe(challengesLost => this.challengesLost = challengesLost);
+  }
+
+  sortChallenges = (a, b) => {
+    if (a.challengeResponseDateTime > b.challengeResponseDateTime) {
+      return -1;
+    } else {
+      return 1;
+    }
   }
 
 }
