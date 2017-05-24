@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayerService } from '../providers/player.service';
+import { ChallengesService } from '../providers/challenges.service';
 
 @Component({
   selector: 'app-challenges-pending',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./challenges-pending.component.css']
 })
 export class ChallengesPendingComponent implements OnInit {
+  loggedInPlayer: any;
+  challengesPending: any[];
 
-  constructor() { }
+  constructor(private playerService: PlayerService,
+              private challegesService: ChallengesService) {
+  }
 
   ngOnInit() {
+    this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
+    this.challegesService.getChallengesPending().subscribe(challengesPending => this.challengesPending = challengesPending);
   }
 
 }

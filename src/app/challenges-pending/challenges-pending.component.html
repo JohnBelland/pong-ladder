@@ -1,3 +1,12 @@
-<p>
-  challenges-pending works!
-</p>
+
+<h2>Challenges Pending</h2>
+
+<ul class="list-unstyled">
+  <li *ngFor="let challenge of challengesPending">
+    <div class="alert alert-info">
+      <p>
+        #{{challenge.challengerRank}} {{challenge.challengerDisplayName}} challenged #{{challenge.defenderRank}} {{challenge.defenderDisplayName}}
+      </p>
+    </div>
+  </li>
+</ul>

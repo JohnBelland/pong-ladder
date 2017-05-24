@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth/auth';
 import {Subject} from 'rxjs';
 import {AngularFireDatabase} from 'angularfire2/database';
-import {AuthService} from './auth.service';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -10,8 +8,9 @@ export class ChallengesService {
   private challengesWon$ = new Subject<any[]>();
   private challengesLost$ = new Subject<any[]>();
   private challengesDeclined$ = new Subject<any[]>();
+  private challengesPending$ = new Subject<any[]>();
 
-  constructor(private af: AngularFireDatabase, private authService: AuthService) {
+  constructor(private af: AngularFireDatabase) {
     af.list('/challengeswon', {
       query: {
         limitToLast: 10,
@@ -36,6 +35,14 @@ export class ChallengesService {
     }).subscribe(challenges => {
       this.challengesDeclined$.next(challenges);
     });
+    af.list('/challenges', {
+      query: {
+        limitToLast: 10,
+        orderByChild: 'challengeResponseDateTime'
+      }
+    }).subscribe(challenges => {
+      this.challengesPending$.next(challenges);
+    });
   }
 
   getChallengesWon(): Observable<any[]> {
@@ -48,5 +55,9 @@ export class ChallengesService {
 
   getChallengesDeclined(): Observable<any[]> {
     return this.challengesDeclined$.asObservable();
+  }
+
+  getChallengesPending(): Observable<any[]> {
+    return this.challengesPending$.asObservable();
   }
 }
