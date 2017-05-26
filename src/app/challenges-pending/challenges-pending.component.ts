@@ -19,7 +19,12 @@ export class ChallengesPendingComponent implements OnInit {
     this.playerService.getLoggedInPlayer().subscribe(loggedInPlayer => this.loggedInPlayer = loggedInPlayer);
     this.challegesService.getChallengesPending()
       .map(c => c.sort(this.sortChallenges))
-      .subscribe(challengesPending => this.challengesPending = challengesPending);
+      .subscribe(challengesPending => {
+        this.challengesPending = challengesPending;
+        // this.challengesPending.forEach(p => {
+        //   p.timeleft
+        // });
+      });
   }
 
   sortChallenges = (a, b) => {
