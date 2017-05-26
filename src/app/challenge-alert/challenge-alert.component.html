@@ -4,10 +4,10 @@
       <strong>Challenge:</strong> #{{challenge.challengerRank}} {{challenge.challengerDisplayName}} has challenged you to a match, please respond with result
     </div>
     <div class="col-sm-1">
-      <a class="btn btn-xs btn-warning pull-right" (click)="challengeWon(challenge);" >You Won</a>
+      <a class="btn btn-xs btn-warning pull-right" (click)="challengeWon(challenge, challenge.$key);" >You Won</a>
     </div>
     <div class="col-sm-1">
-      <a class="btn btn-xs btn-warning pull-right" (click)="challengeLost(challenge);" >You Lost</a>
+      <a class="btn btn-xs btn-warning pull-right" (click)="challengeLost(challenge, challenge.$key);" >You Lost</a>
     </div>
     <div class="col-sm-1">
       <a class="btn btn-xs btn-warning pull-right" (click)="challengeDeclined(challenge, challenge.$key)">Declined</a>
