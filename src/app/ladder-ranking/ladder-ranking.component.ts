@@ -72,6 +72,8 @@ export class LadderRankingComponent implements OnInit {
       });
       player.isChallenged = true;
       player.canChallenge = false;
+      const message = '#' + this.currentPlayer.rank + ' ' + this.currentPlayer.displayName + ' Challenged #' + player.rank + ' ' + player.displayName + 'to a match';
+      this.slackService.addToSlackMessageQueue({ channel: 'usonly', message: message });
     }
   }
 
