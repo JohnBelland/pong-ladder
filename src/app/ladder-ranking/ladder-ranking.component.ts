@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {AuthService} from '../providers/auth.service';
 import * as firebase from 'firebase/app';
+import {SlackService} from '../providers/slack.service';
 
 @Component({
   selector: 'app-ladder-ranking',
@@ -16,7 +17,7 @@ export class LadderRankingComponent implements OnInit {
   user: firebase.User;
   currentPlayer: any;
 
-  constructor(private af: AngularFireDatabase, private authService: AuthService) {
+  constructor(private af: AngularFireDatabase, private authService: AuthService, private slackService: SlackService) {
     this.players$ = af.list('/players', {query: {limitToLast: 100, orderByChild: 'rank'}});
     this.challenges$ = af.list('/challenges', {query: {limitToLast: 1000}});
   }
@@ -50,10 +51,8 @@ export class LadderRankingComponent implements OnInit {
   isChallenged(player: any) {
     let isChallenged = false;
     this.challenges.forEach(challenge => {
-      console.log('hit challenges loop');
       if (challenge.challengerPlayerId === this.currentPlayer.$key && challenge.defenderPlayerId === player.$key) {
         isChallenged = true;
-        console.log('already challenged');
       }
     });
     return isChallenged;

@@ -5,8 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
-
-// New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,20 +20,23 @@ import { ChallengesLostComponent } from './challenges-lost/challenges-lost.compo
 import { ChallengesDeclinedComponent } from './challenges-declined/challenges-declined.component';
 import { ChallengesPendingComponent } from './challenges-pending/challenges-pending.component';
 import { LadderRankingComponent } from './ladder-ranking/ladder-ranking.component';
-import {PlayerService} from "./providers/player.service";
-import {ChallengesService} from "./providers/challenges.service";
+import { PlayerService } from './providers/player.service';
+import { ChallengesService } from './providers/challenges.service';
+import { SlackService } from './providers/slack.service';
+import { LogoutComponent } from './logout/logout.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDXjmsywuNUTfxvX7YnHwKsTn12_Xd1d9k',
   authDomain: 'pongassistrx.firebaseapp.com',
   databaseURL: 'https://pongassistrx.firebaseio.com',
-  projectId: "pongassistrx",
+  projectId: 'pongassistrx',
   storageBucket: 'pongassistrx.appspot.com',
   messagingSenderId: '463969418358'
 };
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'rankings', component: RankingsComponent },
   { path: 'players', component: PlayersComponent },
 ];
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     ChallengesLostComponent,
     ChallengesDeclinedComponent,
     ChallengesPendingComponent,
-    LadderRankingComponent
+    LadderRankingComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AlertModule.forRoot()
   ],
-  providers: [AuthService, PlayerService, ChallengesService],
+  providers: [AuthService, PlayerService, ChallengesService, SlackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
