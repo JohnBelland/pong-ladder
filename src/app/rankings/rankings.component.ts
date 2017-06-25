@@ -42,7 +42,8 @@ export class RankingsComponent implements OnInit {
       uid: this.user.uid,
       displayName: this.displayName,
       email: this.user.email,
-      rank: this.newPlayerRank
+      rank: this.newPlayerRank,
+      isActive: true
     });
   }
 

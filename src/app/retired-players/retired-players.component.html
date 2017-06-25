@@ -1,0 +1,16 @@
+<h2>Retired Players</h2>
+<!--<p class="lead">This is a ladder style ranking.</p>-->
+<ul class="list-unstyled">
+  <li *ngFor="let player of retiredPlayers">
+    <div class="alert alert-success" style="background-color: #3c3c3c;">
+      <div class="row">
+        <div class="col-xs-10">
+          <p style="font-size: 26px; margin: 0;">#{{player.rank}} {{player.displayName}}</p>
+        </div>
+        <div class="col-xs-2">
+
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

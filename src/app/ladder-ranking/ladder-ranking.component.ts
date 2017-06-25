@@ -26,7 +26,7 @@ export class LadderRankingComponent implements OnInit {
     this.challenges$.subscribe(challenges => {
       this.challenges = challenges;
       this.players$.subscribe(players => {
-        this.players = players;
+        this.players = players.filter(p => p.isActive === true);
         this.authService.authState().subscribe(user => {
           this.user = user;
           this.players.forEach(player => {
@@ -58,6 +58,29 @@ export class LadderRankingComponent implements OnInit {
     return isChallenged;
   }
 
+  retire(player: any) {
+    this.players$.subscribe(players => {
+      players.forEach(p => {
+        console.log(p.rank);
+        console.log(player.rank);
+        if (p.rank > player.rank) {
+          console.log(p.key);
+          console.log(p.$key);
+          p.rank = p.rank - 1;
+          // this.players$.update(p.$key, p);
+          this.players$.update(p.$key, p);
+        }
+      });
+    });
+
+    player.isActive = false;
+    delete player.isLoggedInUser;
+    delete player.canChallenge;
+    delete player.isChallenged;
+    this.players$.update(player.$key, player);
+
+  }
+
   challenge(player: any) {
     if (!this.isChallenged(player)) {
       this.challenges$.push({
@@ -73,7 +96,7 @@ export class LadderRankingComponent implements OnInit {
       player.isChallenged = true;
       player.canChallenge = false;
       const message = '#' + this.currentPlayer.rank + ' ' + this.currentPlayer.displayName + ' Challenged #' + player.rank + ' ' + player.displayName + ' to a match';
-      this.slackService.addToSlackMessageQueue({ channel: 'usonly', message: message });
+      this.slackService.addToSlackMessageQueue({channel: 'usonly', message: message});
     }
   }
 

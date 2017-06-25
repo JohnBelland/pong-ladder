@@ -4,12 +4,21 @@
   <li *ngFor="let player of players">
     <div class="alert alert-success">
       <div class="row">
-        <div class="col-xs-10">
+        <div class="col-xs-6">
           <p [ngClass]="{'bold-text': (player.uid === user.uid)}" style="font-size: 26px; margin: 0;">#{{player.rank}} {{player.displayName}}</p>
         </div>
-        <div class="col-xs-2">
-          <a class="btn btn-default pull-right" *ngIf="player.canChallenge;" (click)="challenge(player)" role="button">Challenge</a>
-          <span *ngIf="player.isChallenged" style="font-size: 24px;" class="pull-right">Challenged!</span>
+        <div class="col-xs-6">
+          <ul class="list-inline list-unstyled pull-right">
+            <li *ngIf="player.isLoggedInUser;">
+              <a class="btn btn-default" (click)="retire(player)" role="button">Retire</a>
+            </li>
+            <li *ngIf="player.canChallenge;">
+              <a class="btn btn-default" (click)="challenge(player)" role="button">Challenge</a>
+            </li>
+            <li *ngIf="player.isChallenged">
+              <span style="font-size: 24px;" >Challenged!</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

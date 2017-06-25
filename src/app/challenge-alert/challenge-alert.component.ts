@@ -87,7 +87,7 @@ export class ChallengeAlertComponent implements OnInit, OnDestroy {
     challenge.challengeResponseDateTime = Date.now();
     this.challengesWon$.push(challenge);
     this.challenges$.remove(key);
-    const message = 'TITlE CHANGED!!! #' + challenge.defenderRank + ' ' + challenge.defenderDisplayName + ' LOST to #' + challenge.challengerRank + ' ' + challenge.challengerDisplayName;
+    const message = 'TITLE CHANGED!!! #' + challenge.defenderRank + ' ' + challenge.defenderDisplayName + ' LOST to #' + challenge.challengerRank + ' ' + challenge.challengerDisplayName;
     this.slackService.addToSlackMessageQueue({ channel: 'usonly', message: message });
   }
 

@@ -24,6 +24,7 @@ import { PlayerService } from './providers/player.service';
 import { ChallengesService } from './providers/challenges.service';
 import { SlackService } from './providers/slack.service';
 import { LogoutComponent } from './logout/logout.component';
+import { RetiredPlayersComponent } from './retired-players/retired-players.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDXjmsywuNUTfxvX7YnHwKsTn12_Xd1d9k',
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     ChallengesDeclinedComponent,
     ChallengesPendingComponent,
     LadderRankingComponent,
-    LogoutComponent
+    LogoutComponent,
+    RetiredPlayersComponent
   ],
   imports: [
     BrowserModule,
